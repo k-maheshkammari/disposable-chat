@@ -169,15 +169,3 @@ function endChat() {
 socket.on('chat_ended', () => { 
     location.reload(); 
 });
-
-// --- పర్ఫెక్ట్ ఆటో-స్క్రోల్ లాజిక్ ---
-const msgInputBox = document.getElementById('message-input');
-const chatBoxContainer = document.getElementById('chat-box');
-
-if (msgInputBox && chatBoxContainer) {
-    msgInputBox.addEventListener('focus', () => {
-        setTimeout(() => {
-            chatBoxContainer.scrollTop = chatBoxContainer.scrollHeight;
-        }, 300);
-    });
-}
