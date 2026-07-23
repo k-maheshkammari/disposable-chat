@@ -1,0 +1,255 @@
+/* --- Variables --- */
+:root { --accent-color: #3b82f6; --accent-text: #ffffff; }
+body.light-mode { --bg-color: #f5f7fb; --card-bg: #ffffff; --text-main: #1f2937; --border-color: #e5e7eb; --received-msg: #f3f4f6; --received-text: #1f2937; }
+body.dark-mode { --bg-color: #000000; --card-bg: #121212; --text-main: #f9fafb; --border-color: #27272a; --received-msg: #27272a; --received-text: #f9fafb; }
+body.theme-blue { --accent-color: #4facfe; }
+body.theme-orange { --accent-color: #fb923c; }
+body.theme-green { --accent-color: #34d399; }
+body.theme-pink { --accent-color: #f472b6; }
+body.theme-yellow { --accent-color: #facc15; --accent-text: #000000; }
+body.theme-hacker { --accent-color: #00ff00; --accent-text: #000000; }
+
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Poppins', sans-serif; }
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    height: 100dvh; /* మొబైల్ కీబోర్డ్ వచ్చినప్పుడు అడ్జస్ట్ అవ్వడానికి */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+}
+
+/* --- Top Bar (Wireframe ప్రకారం) --- */
+.top-bar {
+    width: 100%;
+    max-width: 800px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    flex-shrink: 0;
+}
+
+.color-picker { display: flex; gap: 8px; border: 1px solid var(--border-color); padding: 5px 10px; border-radius: 20px; background: var(--card-bg); }
+.color-dot { width: 15px; height: 15px; border-radius: 50%; cursor: pointer; }
+.dot-blue { background: #4facfe; } .dot-orange { background: #fb923c; } .dot-green { background: #34d399; } .dot-pink { background: #f472b6; } .dot-yellow { background: #facc15; } .dot-hacker { background: #00ff00; }
+
+.mode-toggle { 
+    background: var(--card-bg); border: 1px solid var(--border-color); 
+    border-radius: 50%; width: 35px; height: 35px; font-size: 18px; 
+    cursor: pointer; display: flex; justify-content: center; align-items: center; 
+}
+
+/* --- Center Screens (Home & Waiting) --- */
+.screen-container {
+    flex: 1;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.center-box {
+    width: 100%;
+    max-width: 400px;
+    background: var(--card-bg);
+    border: 2px solid var(--accent-color);
+    padding: 30px 20px;
+    text-align: center;
+    border-radius: 8px;
+    margin-bottom: 15vh; /* ఈ లైన్ బాక్స్ ని కొద్దిగా పైకి జరుపుతుంది */
+}
+
+/* --- Brand Header (Home Screen Text) --- */
+.brand-header {
+    margin-bottom: 25px;
+}
+
+.brand-header h2 {
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--accent-color);
+    margin-bottom: 5px;
+}
+
+.brand-header p {
+    font-size: 13px;
+    color: var(--text-main);
+    opacity: 0.7;
+}
+
+.primary-btn { width: 100%; background: var(--accent-color); color: var(--accent-text); padding: 12px; border: none; border-radius: 6px; font-size: 15px; font-weight: 500; cursor: pointer; }
+.join-box { display: flex; gap: 10px; margin-top: 15px; }
+.join-box input { flex: 1; }
+.join-box button { width: auto; margin-top: 0; }
+
+input[type="text"] { background: var(--bg-color); color: var(--text-main); border: 1px solid var(--accent-color); padding: 12px; border-radius: 6px; font-size: 15px; text-align: center; outline: none; }
+/* --- Divider with OR text --- */
+.divider { 
+    position: relative; 
+    margin: 25px 0; 
+    text-align: center; 
+}
+
+.divider::before { 
+    content: ""; 
+    position: absolute; 
+    left: 0; 
+    top: 50%; 
+    width: 100%; 
+    height: 1px; 
+    background: var(--accent-color); 
+    opacity: 0.5;
+}
+
+.divider span { 
+    position: relative; 
+    background: var(--card-bg); 
+    padding: 0 10px; 
+    font-size: 14px; 
+    font-weight: 500;
+    color: var(--text-main); 
+}
+.code-display { font-size: 32px; font-weight: 600; letter-spacing: 5px; color: var(--accent-color); margin: 20px 0; }
+
+/* --- Chat Screen --- */
+.chat-container {
+    flex: 1;
+    width: 100%;
+    max-width: 800px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.chat-header {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 10px 20px;
+}
+.room-info { font-size: 15px; font-weight: 500; }
+/* --- Stylish End Button --- */
+.danger-btn { 
+    background: rgba(239, 68, 68, 0.1); 
+    color: #ef4444; 
+    border: 1px solid rgba(239, 68, 68, 0.3); 
+    padding: 6px 16px; 
+    border-radius: 20px; /* రౌండ్ పిల్ షేప్ */
+    font-size: 13px; 
+    font-weight: 600;
+    cursor: pointer; 
+    transition: all 0.3s ease; /* యానిమేషన్ కోసం */
+}
+
+.danger-btn:hover { 
+    background: #ef4444; 
+    color: #ffffff; 
+    border-color: #ef4444;
+    box-shadow: 0 4px 12px rgba(239, 68, 68, 0.4); /* కర్సర్ పెట్టినప్పుడు ఎర్రటి గ్లో వస్తుంది */
+    transform: translateY(-2px); /* కొద్దిగా పైకి లేస్తుంది */
+}
+
+.chat-box {
+    flex: 1;
+    overflow-y: auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    border: none; /* క్లమ్జీగా ఉన్న బార్డర్ తీసేశాం */
+    margin: 0;
+}
+
+.message { 
+    padding: 12px 16px; 
+    border-radius: 16px; 
+    max-width: 80%; 
+    font-size: 14px; 
+    word-wrap: break-word; 
+    text-align: left; 
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); /* మెసేజ్ స్పష్టంగా కనిపించడానికి షాడో */
+}
+
+.sent { 
+    background-color: var(--accent-color); 
+    color: var(--accent-text); 
+    align-self: flex-end; 
+    border-bottom-right-radius: 4px; 
+}
+
+.received { 
+    background-color: var(--received-msg); 
+    color: var(--received-text); 
+    align-self: flex-start; 
+    border-bottom-left-radius: 4px; 
+}
+
+/* --- Input Area (Telegram Style) --- */
+.input-wrapper {
+    padding: 10px;
+    background: var(--bg-color);
+}
+
+/* --- Input Area (Shadow Effect) --- */
+.input-area {
+    display: flex;
+    align-items: center;
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15); /* షాడో ఎఫెక్ట్ ని మరింత పెంచాం */
+    border-radius: 30px;
+    padding: 5px 15px;
+    transition: box-shadow 0.3s ease;
+}
+
+.input-area:focus-within {
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25); /* టైప్ చేస్తున్నప్పుడు షాడో ఇంకా ఎలివేట్ అవుతుంది */
+}
+
+/* టెక్స్ట్ కచ్చితంగా లెఫ్ట్ సైడ్ నుండే స్టార్ట్ అవ్వడానికి నేరుగా ID వాడాం */
+#message-input { 
+    flex: 1; 
+    background: transparent;
+    border: none; 
+    padding: 12px 5px; 
+    font-size: 15px; 
+    color: var(--text-main);
+    outline: none; 
+    text-align: left !important; /* ఇక్కడ !important వాడటం వల్ల సెంటర్ అలైన్‌మెంట్ బ్రేక్ అవుతుంది */
+}
+
+.input-area input { 
+    flex: 1; 
+    background: transparent;
+    border: none; 
+    padding: 8px 5px; 
+    font-size: 15px; 
+    color: var(--text-main);
+    outline: none; 
+}
+
+/* లోపల ఉన్న బటన్స్ కి బ్యాక్‌గ్రౌండ్, బార్డర్ లేకుండా చేశాం */
+.icon-btn, .send-btn { 
+    background: transparent; 
+    border: none; 
+    color: var(--accent-color); 
+    padding: 5px 8px; 
+    font-size: 20px; 
+    cursor: pointer; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s;
+}
+
+.icon-btn:hover, .send-btn:hover {
+    transform: scale(1.1);
+}
+
+.send-btn {
+    font-size: 22px; /* సెండ్ ఐకాన్ కొంచెం పెద్దగా కనిపించడానికి */
+}
+
+.hidden { display: none !important; }

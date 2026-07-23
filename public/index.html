@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Disposable Chat</title>
+    
+    <!-- ఈ ఒక్క లైన్ యాడ్ చేస్తే 404 ఎర్రర్ పోయి, ట్యాబ్ మీద 🔒 సింబల్ వస్తుంది -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🔒</text></svg>">
+    
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body class="light-mode theme-blue">
+
+    <!-- Top Bar (Theme & Mode Toggle - Wireframe ప్రకారం పైన ఉంటుంది) -->
+    <div class="top-bar">
+        <div class="color-picker">
+            <span class="color-dot dot-blue" onclick="setColor('theme-blue')"></span>
+            <span class="color-dot dot-orange" onclick="setColor('theme-orange')"></span>
+            <span class="color-dot dot-green" onclick="setColor('theme-green')"></span>
+            <span class="color-dot dot-pink" onclick="setColor('theme-pink')"></span>
+            <span class="color-dot dot-yellow" onclick="setColor('theme-yellow')"></span>
+            <span class="color-dot dot-hacker" onclick="setColor('theme-hacker')"></span>
+        </div>
+        <button class="mode-toggle" onclick="toggleMode()">🌓</button>
+    </div>
+
+    <!-- 1. హోమ్ స్క్రీన్ -->
+    <div class="screen-container" id="home-screen">
+        <div class="center-box">
+            
+            <!-- ఇక్కడ మనం మళ్లీ టైటిల్ మరియు టెక్స్ట్ యాడ్ చేశాం -->
+            <div class="brand-header">
+                <h2>Disposable Chat</h2>
+                <p>Private. Encrypted. Zero Logs.</p>
+            </div>
+            
+            <button class="primary-btn" onclick="generateCode()">Generate New Code</button>
+            <div class="divider"><span>OR</span></div>
+            <div class="join-box">
+                <input type="text" id="join-code" placeholder="Enter 6-Digit Code" maxlength="6">
+                <button class="primary-btn" onclick="joinCode()">Join Chat</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. వెయిటింగ్ స్క్రీన్ (లింక్ షేరింగ్ తో) -->
+    <div class="screen-container hidden" id="waiting-screen">
+        <div class="center-box">
+            <h3>Your Room Code</h3>
+            <div class="code-display" id="display-code">------</div>
+            <p style="margin-bottom: 20px;">Waiting for partner...</p>
+            
+            <div class="divider"><span>OR SHARE LINK</span></div>
+            
+            <div class="join-box">
+                <!-- ఇక్కడ డైరెక్ట్ లింక్ కనిపిస్తుంది -->
+                <input type="text" id="invite-link" readonly style="font-size: 13px;">
+                <button class="primary-btn" onclick="copyLink()">Copy</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3. చాట్ స్క్రీన్ (Wireframe ప్రకారం బాటమ్ టైప్ బార్) -->
+    <div class="chat-container hidden" id="chat-screen">
+        <div class="chat-header">
+            <!-- రూమ్ నెంబర్ బదులు Secure Chat అని పెట్టాం, జావాస్క్రిప్ట్ ఎర్రర్ రాకుండా ఐడీ ని హైడ్ చేశాం -->
+            <div class="room-info">
+                <span class="online-dot" style="display:inline-block; width:8px; height:8px; background:#22c55e; border-radius:50%; margin-right:6px; box-shadow: 0 0 8px #22c55e;"></span>
+                Secure Chat
+                <span id="chat-room-id" style="display:none;"></span>
+            </div>
+            
+            <!-- స్టైలిష్ ఎండ్ బటన్ -->
+            <button class="danger-btn" onclick="endChat()">Exit ✖</button>
+        </div>
+        
+        <div id="chat-box" class="chat-box"></div>
+        
+        <!-- టెలిగ్రామ్ స్టైల్ కంబైన్డ్ టైప్ బార్ -->
+        <div class="input-wrapper">
+            <div class="input-area">
+                <input type="text" id="message-input" placeholder="Message..." onkeypress="handleKeyPress(event)">
+                <button id="record-btn" class="icon-btn" onclick="toggleRecording()">🎤</button>
+                <button class="send-btn" onclick="sendMessage()">➤</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
