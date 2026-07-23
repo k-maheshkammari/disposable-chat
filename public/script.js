@@ -1,7 +1,6 @@
 const socket = io();
 let currentRoom = "";
 
-// --- 1. Theme & Mode Controls ---
 function toggleMode() {
     const body = document.body;
     if (body.classList.contains('light-mode')) {
@@ -25,7 +24,6 @@ function handleKeyPress(e) {
     }
 }
 
-// --- 2. Auto Join Logic (Link Sharing) ---
 window.onload = () => {
     const urlParams = new URLSearchParams(window.location.search);
     const codeFromUrl = urlParams.get('code');
@@ -36,7 +34,6 @@ window.onload = () => {
     }
 };
 
-// --- 3. Room Logic (Create & Join) ---
 function generateCode() { 
     socket.emit('create_room'); 
 }
@@ -46,7 +43,6 @@ socket.on('room_created', (code) => {
     document.getElementById('waiting-screen').classList.remove('hidden');
     document.getElementById('display-code').innerText = code;
     
-    // డైరెక్ట్ లింక్ క్రియేట్ చేయడం
     const inviteUrl = window.location.origin + '?code=' + code;
     document.getElementById('invite-link').value = inviteUrl;
 });
@@ -72,7 +68,6 @@ socket.on('room_joined', (code) => {
     document.getElementById('home-screen').classList.add('hidden');
     document.getElementById('waiting-screen').classList.add('hidden');
     document.getElementById('chat-screen').classList.remove('hidden');
-    // URL లో ఉన్న కోడ్ ని మాయం చేసి క్లీన్ గా ఉంచడం
     window.history.replaceState(null, '', window.location.pathname);
 });
 
@@ -84,7 +79,6 @@ socket.on('error_msg', (msg) => {
     document.getElementById('chat-screen').classList.add('hidden');
 });
 
-// --- 4. Text Message Logic ---
 function sendMessage() {
     const msgInput = document.getElementById('message-input');
     const msg = msgInput.value.trim();
@@ -108,7 +102,6 @@ function appendMessage(sender, msg, type) {
     chatBox.scrollTop = chatBox.scrollHeight; 
 }
 
-// --- 5. Voice Logic ---
 let mediaRecorder;
 let audioChunks = [];
 let isRecording = false;
@@ -170,30 +163,9 @@ function appendVoice(sender, audioData, type) {
     chatBox.scrollTop = chatBox.scrollHeight;
 }
 
-// --- 6. End Chat Logic ---
 function endChat() { 
     socket.emit('end_chat', currentRoom); 
 }
 socket.on('chat_ended', () => { 
     location.reload(); 
-});
-
-
-// టెక్స్ట్ టైప్ చేసే ఇన్పుట్ బాక్స్ ఐడీ
-const messageInput = document.getElementById('message_input'); // మీ ఫైల్‌లో ఐడీ ఏదైతే అది ఇవ్వండి
-// మెసేజ్‌లు కనిపించే బాక్స్ ఐడీ
-const chatBox = document.getElementById('chat_box'); // మీ ఫైల్‌లో ఐడీ ఏదైతే అది ఇవ్వండి
-
-// టైపింగ్ బాక్స్ మీద క్లిక్ చేసినప్పుడు (కీబోర్డ్ ఓపెన్ అయినప్పుడు)
-messageInput.addEventListener('focus', () => {
-    // కీబోర్డ్ పూర్తిగా పైకి రావడానికి ఒక 300 మిల్లీ సెకండ్స్ టైమ్ పడుతుంది, 
-    // ఆ తర్వాత వెంటనే చాట్ లాస్ట్ కి స్క్రోల్ అవుతుంది.
-    setTimeout(() => {
-        chatBox.scrollTop = chatBox.scrollHeight;
-    }, 300);
-});
-
-// ఒకవేళ యూజర్ టైప్ చేస్తున్నప్పుడు కూడా ఎప్పటికప్పుడు పైకి వెళ్లాలంటే (Optional)
-window.addEventListener('resize', () => {
-    chatBox.scrollTop = chatBox.scrollHeight;
 });

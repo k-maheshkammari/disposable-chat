@@ -1,4 +1,3 @@
-/* --- Variables --- */
 :root { --accent-color: #3b82f6; --accent-text: #ffffff; }
 body.light-mode { --bg-color: #f5f7fb; --card-bg: #ffffff; --text-main: #1f2937; --border-color: #e5e7eb; --received-msg: #f3f4f6; --received-text: #1f2937; }
 body.dark-mode { --bg-color: #000000; --card-bg: #121212; --text-main: #f9fafb; --border-color: #27272a; --received-msg: #27272a; --received-text: #f9fafb; }
@@ -14,14 +13,13 @@ body.theme-hacker { --accent-color: #00ff00; --accent-text: #000000; }
 body {
     background-color: var(--bg-color);
     color: var(--text-main);
-    height: 100dvh; /* మొబైల్ కీబోర్డ్ వచ్చినప్పుడు అడ్జస్ట్ అవ్వడానికి */
+    height: 100dvh;
     display: flex;
     flex-direction: column;
     align-items: center;
     overflow: hidden;
 }
 
-/* --- Top Bar (Wireframe ప్రకారం) --- */
 .top-bar {
     width: 100%;
     max-width: 800px;
@@ -42,7 +40,6 @@ body {
     cursor: pointer; display: flex; justify-content: center; align-items: center; 
 }
 
-/* --- Center Screens (Home & Waiting) --- */
 .screen-container {
     flex: 1;
     width: 100%;
@@ -60,40 +57,24 @@ body {
     padding: 30px 20px;
     text-align: center;
     border-radius: 8px;
-    margin-bottom: 15vh; /* ఈ లైన్ బాక్స్ ని కొద్దిగా పైకి జరుపుతుంది */
+    margin-bottom: 15vh;
 }
 
-/* --- Brand Header (Home Screen Text) --- */
-.brand-header {
-    margin-bottom: 25px;
-}
-
-.brand-header h2 {
-    font-size: 24px;
-    font-weight: 600;
-    color: var(--accent-color);
-    margin-bottom: 5px;
-}
-
-.brand-header p {
-    font-size: 13px;
-    color: var(--text-main);
-    opacity: 0.7;
-}
+.brand-header { margin-bottom: 25px; }
+.brand-header h2 { font-size: 24px; font-weight: 600; color: var(--accent-color); margin-bottom: 5px; }
+.brand-header p { font-size: 13px; color: var(--text-main); opacity: 0.7; }
 
 .primary-btn { width: 100%; background: var(--accent-color); color: var(--accent-text); padding: 12px; border: none; border-radius: 6px; font-size: 15px; font-weight: 500; cursor: pointer; }
 
-/* --- Join Box Mobile UI Fixes --- */
 .join-box { 
     display: flex; 
-    flex-wrap: wrap; /* స్థలం లేకపోతే కిందకి పంపుతుంది */
+    flex-wrap: wrap; 
     gap: 10px; 
     margin-top: 15px; 
 }
 .join-box input { flex: 1; }
 .join-box button { width: auto; margin-top: 0; }
 
-/* మొబైల్ స్క్రీన్స్ లో మాత్రమే ఇన్పుట్, బటన్ ఫుల్ విడ్త్ రావడానికి */
 @media (max-width: 480px) {
     .join-box input, 
     .join-box button {
@@ -104,35 +85,11 @@ body {
 
 input[type="text"] { background: var(--bg-color); color: var(--text-main); border: 1px solid var(--accent-color); padding: 12px; border-radius: 6px; font-size: 15px; text-align: center; outline: none; }
 
-/* --- Divider with OR text --- */
-.divider { 
-    position: relative; 
-    margin: 25px 0; 
-    text-align: center; 
-}
-
-.divider::before { 
-    content: ""; 
-    position: absolute; 
-    left: 0; 
-    top: 50%; 
-    width: 100%; 
-    height: 1px; 
-    background: var(--accent-color); 
-    opacity: 0.5;
-}
-
-.divider span { 
-    position: relative; 
-    background: var(--card-bg); 
-    padding: 0 10px; 
-    font-size: 14px; 
-    font-weight: 500;
-    color: var(--text-main); 
-}
+.divider { position: relative; margin: 25px 0; text-align: center; }
+.divider::before { content: ""; position: absolute; left: 0; top: 50%; width: 100%; height: 1px; background: var(--accent-color); opacity: 0.5; }
+.divider span { position: relative; background: var(--card-bg); padding: 0 10px; font-size: 14px; font-weight: 500; color: var(--text-main); }
 .code-display { font-size: 32px; font-weight: 600; letter-spacing: 5px; color: var(--accent-color); margin: 20px 0; }
 
-/* --- Chat Screen --- */
 .chat-container {
     flex: 1;
     width: 100%;
@@ -145,10 +102,10 @@ input[type="text"] { background: var(--bg-color); color: var(--text-main); borde
 .chat-header {
     display: flex; justify-content: space-between; align-items: center;
     padding: 10px 20px;
+    flex-shrink: 0;
 }
 .room-info { font-size: 15px; font-weight: 500; }
 
-/* --- Stylish End Button --- */
 .danger-btn { 
     background: rgba(239, 68, 68, 0.1); 
     color: #ef4444; 
@@ -158,15 +115,6 @@ input[type="text"] { background: var(--bg-color); color: var(--text-main); borde
     font-size: 13px; 
     font-weight: 600;
     cursor: pointer; 
-    transition: all 0.3s ease; 
-}
-
-.danger-btn:hover { 
-    background: #ef4444; 
-    color: #ffffff; 
-    border-color: #ef4444;
-    box-shadow: 0 4px 12px rgba(239, 68, 68, 0.4); 
-    transform: translateY(-2px); 
 }
 
 .chat-box {
@@ -176,8 +124,6 @@ input[type="text"] { background: var(--bg-color); color: var(--text-main); borde
     display: flex;
     flex-direction: column;
     gap: 12px;
-    border: none; 
-    margin: 0;
 }
 
 .message { 
@@ -190,24 +136,13 @@ input[type="text"] { background: var(--bg-color); color: var(--text-main); borde
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); 
 }
 
-.sent { 
-    background-color: var(--accent-color); 
-    color: var(--accent-text); 
-    align-self: flex-end; 
-    border-bottom-right-radius: 4px; 
-}
+.sent { background-color: var(--accent-color); color: var(--accent-text); align-self: flex-end; border-bottom-right-radius: 4px; }
+.received { background-color: var(--received-msg); color: var(--received-text); align-self: flex-start; border-bottom-left-radius: 4px; }
 
-.received { 
-    background-color: var(--received-msg); 
-    color: var(--received-text); 
-    align-self: flex-start; 
-    border-bottom-left-radius: 4px; 
-}
-
-/* --- Input Area (Telegram Style) --- */
 .input-wrapper {
     padding: 10px;
     background: var(--bg-color);
+    flex-shrink: 0;
 }
 
 .input-area {
@@ -218,11 +153,6 @@ input[type="text"] { background: var(--bg-color); color: var(--text-main); borde
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15); 
     border-radius: 30px;
     padding: 5px 15px;
-    transition: box-shadow 0.3s ease;
-}
-
-.input-area:focus-within {
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25); 
 }
 
 #message-input { 
@@ -236,16 +166,6 @@ input[type="text"] { background: var(--bg-color); color: var(--text-main); borde
     text-align: left !important; 
 }
 
-.input-area input { 
-    flex: 1; 
-    background: transparent;
-    border: none; 
-    padding: 8px 5px; 
-    font-size: 15px; 
-    color: var(--text-main);
-    outline: none; 
-}
-
 .icon-btn, .send-btn { 
     background: transparent; 
     border: none; 
@@ -253,18 +173,7 @@ input[type="text"] { background: var(--bg-color); color: var(--text-main); borde
     padding: 5px 8px; 
     font-size: 20px; 
     cursor: pointer; 
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: transform 0.2s;
 }
 
-.icon-btn:hover, .send-btn:hover {
-    transform: scale(1.1);
-}
-
-.send-btn {
-    font-size: 22px; 
-}
-
+.send-btn { font-size: 22px; }
 .hidden { display: none !important; }
