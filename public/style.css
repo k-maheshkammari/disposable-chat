@@ -97,6 +97,7 @@ input[type="text"] { background: var(--bg-color); color: var(--text-main); borde
     display: flex;
     flex-direction: column;
     overflow: hidden;
+    height: 100dvh; /* స్క్రీన్ హైట్ పర్ఫెక్ట్ గా ఫిక్స్ చేయడానికి */
 }
 
 .chat-header {
@@ -126,6 +127,12 @@ input[type="text"] { background: var(--bg-color); color: var(--text-main); borde
     gap: 12px;
 }
 
+.input-wrapper {
+    padding: 10px;
+    background: var(--bg-color);
+    flex-shrink: 0; /* టైప్ బార్ ఎప్పటికీ కుచించుకుపోకుండా లేదా కదలకుండా ఆపుతుంది */
+}
+
 .message { 
     padding: 12px 16px; 
     border-radius: 16px; 
@@ -139,11 +146,7 @@ input[type="text"] { background: var(--bg-color); color: var(--text-main); borde
 .sent { background-color: var(--accent-color); color: var(--accent-text); align-self: flex-end; border-bottom-right-radius: 4px; }
 .received { background-color: var(--received-msg); color: var(--received-text); align-self: flex-start; border-bottom-left-radius: 4px; }
 
-.input-wrapper {
-    padding: 10px;
-    background: var(--bg-color);
-    flex-shrink: 0;
-}
+
 
 .input-area {
     display: flex;
