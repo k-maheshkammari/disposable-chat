@@ -170,26 +170,29 @@ socket.on('chat_ended', () => {
     location.reload(); 
 });
 
-// --- మొబైల్ కీబోర్డ్ కోసం పర్ఫెక్ట్ విజువల్ వ్యూపోర్ట్ ఆటో-స్క్రోల్ ---
-const msgInputBox = document.getElementById('message-input');
-const chatBoxContainer = document.getElementById('chat-box');
-
-if (msgInputBox && chatBoxContainer) {
-    // టైప్ బాక్స్ మీద క్లిక్ చేసినప్పుడు
-    msgInputBox.addEventListener('focus', () => {
-        setTimeout(() => {
-            chatBoxContainer.scrollTop = chatBoxContainer.scrollHeight;
-            window.scrollTo(0, 0);
-        }, 300);
-    });
-}
-
-// మొబైల్ కీబోర్డ్ ఓపెన్ అయినప్పుడు వ్యూపోర్ట్ మారుతుంది, అప్పుడు ఇది ఆటోమేటిక్‌గా కిందకి జరుపుతుంది
+// --- మొబైల్ కీబోర్డ్ కోసం అడ్వాన్స్‌డ్ విజువల్ వ్యూపోర్ట్ ఫిక్స్ ---
 if (window.visualViewport) {
     window.visualViewport.addEventListener('resize', () => {
+        // కీబోర్డ్ వచ్చినప్పుడు స్క్రీన్ హైట్ ని కచ్చితంగా అడ్జస్ట్ చేస్తుంది
+        document.body.style.height = window.visualViewport.height + 'px';
+        
+        // లాస్ట్ మెసేజ్ కనిపించేలా ఆటో స్క్రోల్
         const chatBoxContainer = document.getElementById('chat-box');
         if (chatBoxContainer) {
             chatBoxContainer.scrollTop = chatBoxContainer.scrollHeight;
         }
+    });
+}
+
+// టైప్ బాక్స్ మీద క్లిక్ చేసినప్పుడు కూడా వెంటనే స్క్రోల్ అవ్వడానికి
+const msgInputBox = document.getElementById('message-input');
+if (msgInputBox) {
+    msgInputBox.addEventListener('focus', () => {
+        setTimeout(() => {
+            const chatBoxContainer = document.getElementById('chat-box');
+            if (chatBoxContainer) {
+                chatBoxContainer.scrollTop = chatBoxContainer.scrollHeight;
+            }
+        }, 300);
     });
 }
