@@ -82,11 +82,28 @@ body {
 }
 
 .primary-btn { width: 100%; background: var(--accent-color); color: var(--accent-text); padding: 12px; border: none; border-radius: 6px; font-size: 15px; font-weight: 500; cursor: pointer; }
-.join-box { display: flex; gap: 10px; margin-top: 15px; }
+
+/* --- Join Box Mobile UI Fixes --- */
+.join-box { 
+    display: flex; 
+    flex-wrap: wrap; /* స్థలం లేకపోతే కిందకి పంపుతుంది */
+    gap: 10px; 
+    margin-top: 15px; 
+}
 .join-box input { flex: 1; }
 .join-box button { width: auto; margin-top: 0; }
 
+/* మొబైల్ స్క్రీన్స్ లో మాత్రమే ఇన్పుట్, బటన్ ఫుల్ విడ్త్ రావడానికి */
+@media (max-width: 480px) {
+    .join-box input, 
+    .join-box button {
+        width: 100%;
+        flex: 1 1 100%;
+    }
+}
+
 input[type="text"] { background: var(--bg-color); color: var(--text-main); border: 1px solid var(--accent-color); padding: 12px; border-radius: 6px; font-size: 15px; text-align: center; outline: none; }
+
 /* --- Divider with OR text --- */
 .divider { 
     position: relative; 
@@ -130,25 +147,26 @@ input[type="text"] { background: var(--bg-color); color: var(--text-main); borde
     padding: 10px 20px;
 }
 .room-info { font-size: 15px; font-weight: 500; }
+
 /* --- Stylish End Button --- */
 .danger-btn { 
     background: rgba(239, 68, 68, 0.1); 
     color: #ef4444; 
     border: 1px solid rgba(239, 68, 68, 0.3); 
     padding: 6px 16px; 
-    border-radius: 20px; /* రౌండ్ పిల్ షేప్ */
+    border-radius: 20px; 
     font-size: 13px; 
     font-weight: 600;
     cursor: pointer; 
-    transition: all 0.3s ease; /* యానిమేషన్ కోసం */
+    transition: all 0.3s ease; 
 }
 
 .danger-btn:hover { 
     background: #ef4444; 
     color: #ffffff; 
     border-color: #ef4444;
-    box-shadow: 0 4px 12px rgba(239, 68, 68, 0.4); /* కర్సర్ పెట్టినప్పుడు ఎర్రటి గ్లో వస్తుంది */
-    transform: translateY(-2px); /* కొద్దిగా పైకి లేస్తుంది */
+    box-shadow: 0 4px 12px rgba(239, 68, 68, 0.4); 
+    transform: translateY(-2px); 
 }
 
 .chat-box {
@@ -158,7 +176,7 @@ input[type="text"] { background: var(--bg-color); color: var(--text-main); borde
     display: flex;
     flex-direction: column;
     gap: 12px;
-    border: none; /* క్లమ్జీగా ఉన్న బార్డర్ తీసేశాం */
+    border: none; 
     margin: 0;
 }
 
@@ -169,7 +187,7 @@ input[type="text"] { background: var(--bg-color); color: var(--text-main); borde
     font-size: 14px; 
     word-wrap: break-word; 
     text-align: left; 
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); /* మెసేజ్ స్పష్టంగా కనిపించడానికి షాడో */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); 
 }
 
 .sent { 
@@ -192,23 +210,21 @@ input[type="text"] { background: var(--bg-color); color: var(--text-main); borde
     background: var(--bg-color);
 }
 
-/* --- Input Area (Shadow Effect) --- */
 .input-area {
     display: flex;
     align-items: center;
     background: var(--card-bg);
     border: 1px solid var(--border-color);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15); /* షాడో ఎఫెక్ట్ ని మరింత పెంచాం */
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15); 
     border-radius: 30px;
     padding: 5px 15px;
     transition: box-shadow 0.3s ease;
 }
 
 .input-area:focus-within {
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25); /* టైప్ చేస్తున్నప్పుడు షాడో ఇంకా ఎలివేట్ అవుతుంది */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25); 
 }
 
-/* టెక్స్ట్ కచ్చితంగా లెఫ్ట్ సైడ్ నుండే స్టార్ట్ అవ్వడానికి నేరుగా ID వాడాం */
 #message-input { 
     flex: 1; 
     background: transparent;
@@ -217,7 +233,7 @@ input[type="text"] { background: var(--bg-color); color: var(--text-main); borde
     font-size: 15px; 
     color: var(--text-main);
     outline: none; 
-    text-align: left !important; /* ఇక్కడ !important వాడటం వల్ల సెంటర్ అలైన్‌మెంట్ బ్రేక్ అవుతుంది */
+    text-align: left !important; 
 }
 
 .input-area input { 
@@ -230,7 +246,6 @@ input[type="text"] { background: var(--bg-color); color: var(--text-main); borde
     outline: none; 
 }
 
-/* లోపల ఉన్న బటన్స్ కి బ్యాక్‌గ్రౌండ్, బార్డర్ లేకుండా చేశాం */
 .icon-btn, .send-btn { 
     background: transparent; 
     border: none; 
@@ -249,7 +264,7 @@ input[type="text"] { background: var(--bg-color); color: var(--text-main); borde
 }
 
 .send-btn {
-    font-size: 22px; /* సెండ్ ఐకాన్ కొంచెం పెద్దగా కనిపించడానికి */
+    font-size: 22px; 
 }
 
 .hidden { display: none !important; }

@@ -177,3 +177,23 @@ function endChat() {
 socket.on('chat_ended', () => { 
     location.reload(); 
 });
+
+
+// టెక్స్ట్ టైప్ చేసే ఇన్పుట్ బాక్స్ ఐడీ
+const messageInput = document.getElementById('message_input'); // మీ ఫైల్‌లో ఐడీ ఏదైతే అది ఇవ్వండి
+// మెసేజ్‌లు కనిపించే బాక్స్ ఐడీ
+const chatBox = document.getElementById('chat_box'); // మీ ఫైల్‌లో ఐడీ ఏదైతే అది ఇవ్వండి
+
+// టైపింగ్ బాక్స్ మీద క్లిక్ చేసినప్పుడు (కీబోర్డ్ ఓపెన్ అయినప్పుడు)
+messageInput.addEventListener('focus', () => {
+    // కీబోర్డ్ పూర్తిగా పైకి రావడానికి ఒక 300 మిల్లీ సెకండ్స్ టైమ్ పడుతుంది, 
+    // ఆ తర్వాత వెంటనే చాట్ లాస్ట్ కి స్క్రోల్ అవుతుంది.
+    setTimeout(() => {
+        chatBox.scrollTop = chatBox.scrollHeight;
+    }, 300);
+});
+
+// ఒకవేళ యూజర్ టైప్ చేస్తున్నప్పుడు కూడా ఎప్పటికప్పుడు పైకి వెళ్లాలంటే (Optional)
+window.addEventListener('resize', () => {
+    chatBox.scrollTop = chatBox.scrollHeight;
+});
