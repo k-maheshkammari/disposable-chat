@@ -170,21 +170,26 @@ socket.on('chat_ended', () => {
     location.reload(); 
 });
 
-
-// --- మొబైల్ కీబోర్డ్ ఓపెన్ అయినప్పుడు ఆటో-స్క్రోల్ అయ్యేలా ---
+// --- మొబైల్ కీబోర్డ్ కోసం పర్ఫెక్ట్ విజువల్ వ్యూపోర్ట్ ఆటో-స్క్రోల్ ---
 const msgInputBox = document.getElementById('message-input');
 const chatBoxContainer = document.getElementById('chat-box');
 
 if (msgInputBox && chatBoxContainer) {
-    // టైప్ చేయడానికి బాక్స్ మీద క్లిక్ చేసినప్పుడు (కీబోర్డ్ వచ్చినప్పుడు)
+    // టైప్ బాక్స్ మీద క్లిక్ చేసినప్పుడు
     msgInputBox.addEventListener('focus', () => {
         setTimeout(() => {
             chatBoxContainer.scrollTop = chatBoxContainer.scrollHeight;
-        }, 300); // కీబోర్డ్ పూర్తిగా ఓపెన్ అయ్యే టైమింగ్ కోసం చిన్న డిలే
+            window.scrollTo(0, 0);
+        }, 300);
     });
+}
 
-    // మొబైల్ స్క్రీన్ సైజ్ మారినప్పుడు (కీబోర్డ్ ఓపెన్/క్లోజ్ అయినప్పుడు)
-    window.addEventListener('resize', () => {
-        chatBoxContainer.scrollTop = chatBoxContainer.scrollHeight;
+// మొబైల్ కీబోర్డ్ ఓపెన్ అయినప్పుడు వ్యూపోర్ట్ మారుతుంది, అప్పుడు ఇది ఆటోమేటిక్‌గా కిందకి జరుపుతుంది
+if (window.visualViewport) {
+    window.visualViewport.addEventListener('resize', () => {
+        const chatBoxContainer = document.getElementById('chat-box');
+        if (chatBoxContainer) {
+            chatBoxContainer.scrollTop = chatBoxContainer.scrollHeight;
+        }
     });
 }
