@@ -169,3 +169,22 @@ function endChat() {
 socket.on('chat_ended', () => { 
     location.reload(); 
 });
+
+
+// --- మొబైల్ కీబోర్డ్ ఓపెన్ అయినప్పుడు ఆటో-స్క్రోల్ అయ్యేలా ---
+const msgInputBox = document.getElementById('message-input');
+const chatBoxContainer = document.getElementById('chat-box');
+
+if (msgInputBox && chatBoxContainer) {
+    // టైప్ చేయడానికి బాక్స్ మీద క్లిక్ చేసినప్పుడు (కీబోర్డ్ వచ్చినప్పుడు)
+    msgInputBox.addEventListener('focus', () => {
+        setTimeout(() => {
+            chatBoxContainer.scrollTop = chatBoxContainer.scrollHeight;
+        }, 300); // కీబోర్డ్ పూర్తిగా ఓపెన్ అయ్యే టైమింగ్ కోసం చిన్న డిలే
+    });
+
+    // మొబైల్ స్క్రీన్ సైజ్ మారినప్పుడు (కీబోర్డ్ ఓపెన్/క్లోజ్ అయినప్పుడు)
+    window.addEventListener('resize', () => {
+        chatBoxContainer.scrollTop = chatBoxContainer.scrollHeight;
+    });
+}
