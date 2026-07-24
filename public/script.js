@@ -35,13 +35,10 @@ window.onload = () => {
 };
 
 function generateCode() {
-    // 1. "Generate New Code" బటన్ నొక్కిన వెంటనే యాడ్ కనిపించేలా చేయడం
-    const adBox = document.getElementById('ad-container');
-    if (adBox) {
-        adBox.style.display = 'block';
-    }
+    // 3. User 'Generate Code' నొక్కినప్పుడు A-Ads లింక్ కొత్త ట్యాబ్‌లో ఓపెన్ అవుతుంది
+    window.open('https://acceptable.a-ads.com/2448958', '_blank');
 
-    // 2. సర్వర్‌కి రూమ్ క్రియేషన్ రిక్వెస్ట్ పంపడం
+    // రూమ్ క్రియేట్ చేయడానికి సర్వర్‌కి రిక్వెస్ట్
     socket.emit('create_room');
 }
 
