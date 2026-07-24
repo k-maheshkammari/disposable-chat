@@ -25,8 +25,14 @@
     </div>
 
     <!-- 1. Home Screen -->
-    <div class="screen-container" id="home-screen">
-        <div class="center-box">
+    <div class="screen-container" id="home-screen" style="flex-direction: column;">
+        
+        <!-- 🟢 1. TOP AD BANNER -->
+        <div class="ad-banner-top">
+            <iframe data-aa='2448958' src='//acceptable.a-ads.com/2448958/?size=Adaptive' style='border:0; padding:0; width:100%; height:100%; overflow:hidden; display:block; margin:auto;'></iframe>
+        </div>
+
+        <div class="center-box" style="margin-bottom: 0;">
             <div class="brand-header">
                 <h2>Disposable Chat</h2>
                 <p>Private & Anonymous Messaging</p>
@@ -41,6 +47,11 @@
                 <button class="primary-btn" onclick="joinCode()">Join</button>
             </div>
         </div>
+
+        <!-- 🟢 2. BOTTOM AD BANNER -->
+        <div class="ad-banner-bottom">
+            <iframe data-aa='2448958' src='//acceptable.a-ads.com/2448958/?size=Adaptive' style='border:0; padding:0; width:100%; height:100%; overflow:hidden; display:block; margin:auto;'></iframe>
+        </div>
     </div>
 
     <!-- 2. Waiting Screen -->
@@ -48,26 +59,14 @@
         <div class="center-box">
             <h3>Your Room Code</h3>
             <div class="code-display" id="display-code">------</div>
-            <p style="margin-bottom: 20px;">Waiting for partner...</p>
+            <p class="waiting-text">Waiting for partner...</p>
             
             <div class="divider"><span>OR SHARE LINK</span></div>
             
             <div class="join-box">
-                <input type="text" id="invite-link" readonly style="font-size: 13px;">
+                <input type="text" id="invite-link" class="invite-link-input" readonly>
                 <button class="primary-btn" onclick="copyLink()">Copy</button>
             </div>
-        </div>
-        <!-- 🟢 యాడ్ కోసం స్థలం -->
-        <div class="ad-space">
-            <!-- ఇక్కడ Adsterra / A-Ads కోడ్ పేస్ట్ చేయండి -->
-             <!-- BEGIN AADS AD UNIT 2448958 -->
-
-         <div id="frame" style="width: 100%;margin: auto;position: relative; z-index: 99998;">
-          <iframe data-aa='2448958' src='//acceptable.a-ads.com/2448958/?size=Adaptive'
-                            style='border:0; padding:0; width:70%; height:auto; overflow:hidden;display: block;margin: auto'></iframe>
-         </div>
-
-<!-- END AADS AD UNIT 2448958 -->
         </div>
     </div>
 
@@ -75,7 +74,7 @@
     <div class="chat-container hidden" id="chat-screen">
         <div class="chat-header">
             <div class="room-info">
-                <span class="online-dot" style="display:inline-block; width:8px; height:8px; background:#22c55e; border-radius:50%; margin-right:6px; box-shadow: 0 0 8px #22c55e;"></span>
+                <span class="online-dot"></span>
                 Secure Chat
             </div>
             <button class="danger-btn" onclick="endChat()">Exit ✖</button>
@@ -88,6 +87,19 @@
                 <input type="text" id="message-input" placeholder="Message..." onkeypress="handleKeyPress(event)">
                 <button id="record-btn" class="icon-btn" onclick="toggleRecording()">🎤</button>
                 <button class="send-btn" onclick="sendMessage()">➤</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 🟢 3. FULL SCREEN AD MODAL (RC20 Game Style) -->
+    <div id="adModal" class="ad-modal-overlay">
+        <div class="ad-modal-content">
+            <button class="close-ad-btn" onclick="closeAdAndShowCode()">✕</button>
+            <h3 style="margin-bottom: 15px; color: #333;">Advertisement</h3>
+            
+            <div style="width: 100%; height: 250px; background: #f0f0f0; display: flex; justify-content: center; align-items: center;">
+                <!-- Full Screen Ad Code -->
+                <iframe data-aa='2448958' src='//acceptable.a-ads.com/2448958/?size=Adaptive' style='border:0; padding:0; width:100%; height:100%; overflow:hidden; display:block;'></iframe>
             </div>
         </div>
     </div>

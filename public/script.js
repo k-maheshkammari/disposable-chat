@@ -34,11 +34,19 @@ window.onload = () => {
     }
 };
 
+// 🟢 RC20 మోడల్ యాడ్ లాజిక్
 function generateCode() {
-    // 3. User 'Generate Code' నొక్కినప్పుడు A-Ads లింక్ కొత్త ట్యాబ్‌లో ఓపెన్ అవుతుంది
-    window.open('https://acceptable.a-ads.com/2448958', '_blank');
+    // 1. "Create Room" నొక్కిన వెంటనే ఫుల్ స్క్రీన్ యాడ్ చూపిస్తాం
+    const adModal = document.getElementById("adModal");
+    adModal.style.display = "flex";
+}
 
-    // రూమ్ క్రియేట్ చేయడానికి సర్వర్‌కి రిక్వెస్ట్
+function closeAdAndShowCode() {
+    // 2. యూజర్ యాడ్ ని Close (✕) చేసిన తర్వాత మోడల్ హైడ్ అవుతుంది
+    const adModal = document.getElementById("adModal");
+    adModal.style.display = "none";
+
+    // 3. ఆ తర్వాతే సర్వర్ కు రూమ్ క్రియేట్ చేయమని రిక్వెస్ట్ వెళ్తుంది
     socket.emit('create_room');
 }
 
@@ -159,8 +167,7 @@ function appendVoice(sender, audioData, type) {
     const audioElem = document.createElement('audio');
     audioElem.controls = true;
     audioElem.src = audioData;
-    audioElem.style.maxWidth = "100%";
-    audioElem.style.height = "30px";
+    audioElem.classList.add('voice-message-audio');
     
     msgDiv.appendChild(audioElem);
     chatBox.appendChild(msgDiv);
@@ -175,7 +182,7 @@ socket.on('chat_ended', () => {
     location.reload(); 
 });
 
-// మొబైల్ కీబోర్డ్ ఆటో స్క్రోల్
+// Mobile keyboard auto scroll
 const messageInputBox = document.getElementById('message-input');
 const chatBoxArea = document.getElementById('chat-box');
 
