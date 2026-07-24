@@ -34,8 +34,15 @@ window.onload = () => {
     }
 };
 
-function generateCode() { 
-    socket.emit('create_room'); 
+function generateCode() {
+    // 1. "Generate New Code" బటన్ నొక్కిన వెంటనే యాడ్ కనిపించేలా చేయడం
+    const adBox = document.getElementById('ad-container');
+    if (adBox) {
+        adBox.style.display = 'block';
+    }
+
+    // 2. సర్వర్‌కి రూమ్ క్రియేషన్ రిక్వెస్ట్ పంపడం
+    socket.emit('create_room');
 }
 
 socket.on('room_created', (code) => {
@@ -182,3 +189,4 @@ if (messageInputBox && chatBoxArea) {
         }, 300);
     });
 }
+
