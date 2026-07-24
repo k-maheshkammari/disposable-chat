@@ -34,20 +34,42 @@ window.onload = () => {
     }
 };
 
-// 🟢 RC20 మోడల్ యాడ్ లాజిక్
+// 🟢 RC20 మోడల్ యాడ్ లాజిక్ (కొత్త మార్పులు)
 function generateCode() {
-    // 1. "Create Room" నొక్కిన వెంటనే ఫుల్ స్క్రీన్ యాడ్ చూపిస్తాం
+    // 1. వెంటనే సర్వర్ కు రూమ్ క్రియేట్ చేయమని రిక్వెస్ట్ (బ్యాక్‌గ్రౌండ్ కోడ్ జనరేషన్)
+    socket.emit('create_room');
+
+    // 2. ఫుల్ స్క్రీన్ యాడ్ మోడల్ ఓపెన్ చేయడం
     const adModal = document.getElementById("adModal");
+    const closeBtn = document.getElementById("closeAdBtn");
+    const adTimerText = document.getElementById("adTimerText");
+    const timeCountSpan = document.getElementById("timeCount");
+    
     adModal.style.display = "flex";
+    closeBtn.style.display = "none"; // బటన్ హైడ్ లో ఉంటుంది
+    adTimerText.style.display = "block"; // టైమర్ టెక్స్ట్ చూపిస్తుంది
+    
+    let timeLeft = 4; // 4 సెకన్ల టైమర్
+    timeCountSpan.innerText = timeLeft;
+
+    // 3. ప్రతి 1 సెకను కి టైమ్ తగ్గిస్తూ, జీరో అయ్యాక క్లోజ్ బటన్ చూపించడం
+    const timerInterval = setInterval(() => {
+        timeLeft--;
+        timeCountSpan.innerText = timeLeft;
+
+        if(timeLeft <= 0) {
+            clearInterval(timerInterval);
+            closeBtn.style.display = "block"; // క్లోజ్ బటన్ చూపించు
+            adTimerText.style.display = "none"; // టైమర్ టెక్స్ట్ దాచేయ్
+        }
+    }, 1000);
 }
 
 function closeAdAndShowCode() {
-    // 2. యూజర్ యాడ్ ని Close (✕) చేసిన తర్వాత మోడల్ హైడ్ అవుతుంది
+    // యూజర్ యాడ్ ని Close (✕) చేసిన తర్వాత మోడల్ హైడ్ అవుతుంది. 
+    // కోడ్ ముందే బ్యాక్‌గ్రౌండ్ లో జనరేట్ అయివుంటుంది కాబట్టి వెంటనే కనిపిస్తుంది.
     const adModal = document.getElementById("adModal");
     adModal.style.display = "none";
-
-    // 3. ఆ తర్వాతే సర్వర్ కు రూమ్ క్రియేట్ చేయమని రిక్వెస్ట్ వెళ్తుంది
-    socket.emit('create_room');
 }
 
 socket.on('room_created', (code) => {
