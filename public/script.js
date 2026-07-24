@@ -170,12 +170,12 @@ function appendVoice(sender, audioData, type) {
 function endChat() { 
     socket.emit('end_chat', currentRoom); 
 }
+
 socket.on('chat_ended', () => { 
     location.reload(); 
 });
 
-
-// --- మొబైల్ కీబోర్డ్ వచ్చినప్పుడు చాట్ ఆటో-స్క్రోల్ అవ్వడానికి ---
+// మొబైల్ కీబోర్డ్ ఆటో స్క్రోల్
 const messageInputBox = document.getElementById('message-input');
 const chatBoxArea = document.getElementById('chat-box');
 
@@ -186,4 +186,3 @@ if (messageInputBox && chatBoxArea) {
         }, 300);
     });
 }
-

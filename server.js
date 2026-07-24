@@ -42,18 +42,16 @@ io.on('connection', (socket) => {
         socket.to(data.room).emit('receive_voice', data.audio);
     });
 
-    // 1. ఎండ్ బటన్ నొక్కినప్పుడు (Manual End)
+    // Manual End
     socket.on('end_chat', (room) => {
         io.to(room).emit('chat_ended'); 
         io.in(room).socketsLeave(room); 
     });
 
-    // 2. కొత్త లాజిక్: ఎవరైనా రిఫ్రెష్ చేసినా, ట్యాబ్ క్లోజ్ చేసినా (Auto End)
+    // Auto End (Refresh / Disconnect)
     socket.on('disconnecting', () => {
-        // కనెక్షన్ కట్ అవుతున్న యూజర్ ఏ రూమ్స్ లో ఉన్నాడో చెక్ చేస్తాం
         socket.rooms.forEach((room) => {
             if (room !== socket.id) {
-                // ఆ రూమ్ లో మిగిలి ఉన్న రెండో యూజర్ కి ఎండ్ సిగ్నల్ పంపుతాం
                 socket.to(room).emit('chat_ended');
             }
         });
@@ -65,5 +63,3 @@ const PORT = process.env.PORT || 3000;
 server.listen(PORT, () => {
     console.log(`🚀 సర్వర్ రన్ అవుతోంది: http://localhost:${PORT}`);
 });
-
-

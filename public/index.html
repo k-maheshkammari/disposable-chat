@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, interactive-widget=resizes-content">    <title>Disposable Chat</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, interactive-widget=resizes-content">
+    <title>Disposable Chat</title>
     
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🔒</text></svg>">
-    
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
@@ -24,7 +24,24 @@
         <button class="mode-toggle" onclick="toggleMode()">🌓</button>
     </div>
 
-  	Partly or fully hidden
+    <!-- 1. Home Screen -->
+    <div class="screen-container" id="home-screen">
+        <div class="center-box">
+            <div class="brand-header">
+                <h2>Disposable Chat</h2>
+                <p>Private & Anonymous Messaging</p>
+            </div>
+            
+            <button class="primary-btn" onclick="generateCode()">Create Room</button>
+            
+            <div class="divider"><span>OR</span></div>
+            
+            <div class="join-box">
+                <input type="text" id="join-code" placeholder="ENTER 6-DIGIT CODE" maxlength="6">
+                <button class="primary-btn" onclick="joinCode()">Join</button>
+            </div>
+        </div>
+    </div>
 
     <!-- 2. Waiting Screen -->
     <div class="screen-container hidden" id="waiting-screen">
@@ -41,9 +58,17 @@
             </div>
         </div>
         <!-- 🟢 యాడ్ కోసం స్థలం -->
-       <div class="ad-space">
-        <!-- ఇక్కడ Adsterra / A-Ads కోడ్ పేస్ట్ చేయండి -->
-    </div>
+        <div class="ad-space">
+            <!-- ఇక్కడ Adsterra / A-Ads కోడ్ పేస్ట్ చేయండి -->
+             <!-- BEGIN AADS AD UNIT 2448958 -->
+
+         <div id="frame" style="width: 100%;margin: auto;position: relative; z-index: 99998;">
+          <iframe data-aa='2448958' src='//acceptable.a-ads.com/2448958/?size=Adaptive'
+                            style='border:0; padding:0; width:70%; height:auto; overflow:hidden;display: block;margin: auto'></iframe>
+         </div>
+
+<!-- END AADS AD UNIT 2448958 -->
+        </div>
     </div>
 
     <!-- 3. Chat Screen -->
