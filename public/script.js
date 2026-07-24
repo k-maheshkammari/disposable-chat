@@ -169,3 +169,16 @@ function endChat() {
 socket.on('chat_ended', () => { 
     location.reload(); 
 });
+
+
+// --- మొబైల్ కీబోర్డ్ వచ్చినప్పుడు చాట్ ఆటో-స్క్రోల్ అవ్వడానికి ---
+const messageInputBox = document.getElementById('message-input');
+const chatBoxArea = document.getElementById('chat-box');
+
+if (messageInputBox && chatBoxArea) {
+    messageInputBox.addEventListener('focus', () => {
+        setTimeout(() => {
+            chatBoxArea.scrollTop = chatBoxArea.scrollHeight;
+        }, 300);
+    });
+}

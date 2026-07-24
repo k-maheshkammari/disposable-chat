@@ -13,12 +13,14 @@ body.theme-hacker { --accent-color: #00ff00; --accent-text: #000000; }
 body {
     background-color: var(--bg-color);
     color: var(--text-main);
-    height: 100vh;
+    height: 100dvh; /* మొబైల్ కీబోర్డ్ కి తగ్గట్టు మారుతుంది */
     margin: 0;
-    overflow: hidden;
+    overflow: hidden; /* పేజీ మొత్తం కదలకుండా లాక్ చేస్తుంది */
     display: flex;
     flex-direction: column;
     align-items: center;
+    position: fixed; /* మొబైల్ బ్రౌజర్స్ లో పేజీ జరగకుండా ఆపుతుంది */
+    width: 100%;
 }
 
 .top-bar {
@@ -123,7 +125,7 @@ input[type="text"] { background: var(--bg-color); color: var(--text-main); borde
 
 .chat-box {
     flex: 1;
-    overflow-y: auto;
+    overflow-y: auto; /* కేవలం మెసేజెస్ మాత్రమే స్క్రోల్ అవుతాయి */
     padding: 20px;
     display: flex;
     flex-direction: column;
@@ -133,7 +135,7 @@ input[type="text"] { background: var(--bg-color); color: var(--text-main); borde
 .input-wrapper {
     padding: 10px;
     background: var(--bg-color);
-    flex-shrink: 0; /* టైప్ బార్ ఎప్పటికీ కదలకుండా కీబోర్డ్ పైనే ఆగుతుంది */
+    flex-shrink: 0; /* కీబోర్డ్ వచ్చినప్పుడు టైప్ బార్ కుచించుకుపోకుండా కీబోర్డ్ పైనే ఆగుతుంది */
 }
 
 .message { 
